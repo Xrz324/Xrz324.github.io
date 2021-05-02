@@ -3,43 +3,28 @@
 """
 
 # For Maverick
-site_prefix = "/Blog-With-GitHub-Boilerplate/"
+site_prefix = "/"
 source_dir = "../src/"
 build_dir = "../dist/"
 index_page_size = 10
 archives_page_size = 20
-template = {
-    "name": "Galileo",
-    "type": "local",
-    "path": "../Galileo"
-}
 enable_jsdelivr = {
-    "enabled": False,
-    "repo": ""
+
+    "enabled": True,
+
+    "repo": "Xrz324/Xrz324.github.io@master"
+
 }
 
 # 站点设置
-site_name = "我的个人博客"
-site_logo = "${static_prefix}logo.png"
-site_build_date = "2019-12-18T16:51+08:00"
-author = "熊猫小A"
-email = "hi@imalan.cn"
-author_homepage = "https://www.imalan.cn"
-description = "只坚持一种正义。我的正义。"
-key_words = ['Maverick', '熊猫小A', 'Galileo', 'blog']
+site_name = "迎风沐雨"
+site_build_date = "2020-01-01T00:00+08:00"
+author = "XueRunze"
+email = "Xrz324@outlook.com"
+author_homepage = "https://Xrz324.github.io"
+description = "一如少年模样,风雨不挡"
+key_words = ['迎风沐雨', '博客', 'Blog']
 language = 'zh-CN'
-external_links = [
-    {
-        "name": "Maverick",
-        "url": "https://github.com/AlanDecode/Maverick",
-        "brief": "🏄‍ Go My Own Way."
-    },
-    {
-        "name": "三無計劃",
-        "url": "https://www.imalan.cn",
-        "brief": "熊猫小A的主页。"
-    }
-]
 nav = [
     {
         "name": "首页",
@@ -61,18 +46,18 @@ nav = [
 social_links = [
     {
         "name": "Twitter",
-        "url": "https://twitter.com/AlanDecode",
-        "icon": "gi gi-twitter"
+        "url": "https://twitter.com/x32400",
+        "icon": ""
     },
     {
-        "name": "GitHub",
-        "url": "https://github.com/AlanDecode",
-        "icon": "gi gi-github"
+        "name": "Telegram",
+        "url": "https://t.me/X32400",
+        "icon": ""
     },
     {
-        "name": "Weibo",
-        "url": "https://weibo.com/5245109677/",
-        "icon": "gi gi-weibo"
+        "name": "Coolapk",
+        "url": "http://www.coolapk.com/u/1111669",
+        "icon": ""
     }
 ]
 
