@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: flase
 title: 初中影集
 slug: Memories
 date: 2020-06-25 19:00
