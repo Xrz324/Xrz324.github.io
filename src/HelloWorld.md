@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hello World!
-slug: typography
+slug: blog
 date: 2020-01-01 00:00
 status: publish
 author: Xuerunze
@@ -9,7 +9,7 @@ categories:
   - Maverick
 tags:
   - Design
-  - Typography
+  - Blog
 excerpt: 这是一篇示例文章，在这里你可以看到常用页面元素的显示效果。
 ---
 
