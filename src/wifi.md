@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Windows下开机启用WiFi热点
-slug: help
+slug: wifi
 date: 2022-06-24 23:00
 status: publish
 author: Xuerunze
