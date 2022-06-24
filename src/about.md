@@ -16,8 +16,8 @@ tags:
 
 
 ## Contact
-*CoolApk: @桉陌
-*QQ num: 3240073549
-*Email(Major): Xrz324@outlook.com
-*Email(Spare): Xrz324@qq.com
-*Telegram:[Anmoe](https://t.me/X32400)
+* CoolApk: @桉陌
+* QQ num: 3240073549
+* Email(Major): Xrz324@outlook.com
+* Email(Spare): Xrz324@qq.com
+* Telegram:[Anmoe](https://t.me/X32400)
