@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="桉陌,博客,Blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="桉陌的小站 &raquo; RSS 2.0" href="/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="桉陌的小站 &raquo; ATOM 1.0" href="/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Xrz324/Xrz324.github.io@master/assets/galileo-8d8763e752.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Xrz324/Xrz324.github.io@master/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Xrz324/Xrz324.github.io@master/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/Xrz324/Xrz324.github.io@master/e502939e752a7c083e44844b612a400e.json"
+        }
+    </script>
+    
+<title>Windows下开机启用WiFi热点 - 桉陌的小站</title>
+<meta name="author" content="Xuerunze" />
+<meta name="description" content="这是一个实例，以在Win11上利用Powershell自动开启WiFi热点" />
+<meta property="og:title" content="Windows下开机启用WiFi热点 - 桉陌的小站" />
+<meta property="og:description" content="这是一个实例，以在Win11上利用Powershell自动开启WiFi热点" />
+<meta property="og:site_name" content="桉陌的小站" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/archives/help/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2022-06-24T23:00:00-00.00" />
+<meta name="twitter:title" content="Windows下开机启用WiFi热点 - 桉陌的小站" />
+<meta name="twitter:description" content="这是一个实例，以在Win11上利用Powershell自动开启WiFi热点" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/">桉陌的小站</a></h1>
+                        <p>承蒙时光不弃，与成长不期而遇</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">Windows下开机启用WiFi热点</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>Xuerunze</span>
+                <time>
+                    2022-06-24
+                </time>
+                
+                in <a no-style class="category" href="/category/Tech/">
+                    Tech
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <h1>Powershell新建脚本</h1>
+<div class="highlight"><pre><span></span><span class="n">Add</span><span class="o">-</span><span class="n">Type</span><span class="w"> </span><span class="o">-</span><span class="n">AssemblyName</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="n">Runtime</span><span class="p">.</span><span class="n">WindowsRuntime</span><span class="w"></span>
+<span class="n">$asTaskGeneric</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">([</span><span class="n">System</span><span class="p">.</span><span class="n">WindowsRuntimeSystemExtensions</span><span class="p">].</span><span class="n">GetMethods</span><span class="p">()</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">$_</span><span class="p">.</span><span class="n">Name</span><span class="w"> </span><span class="o">-</span><span class="n">eq</span><span class="w"> </span><span class="err">&#39;</span><span class="n">AsTask</span><span class="err">&#39;</span><span class="w"> </span><span class="o">-</span><span class="n">and</span><span class="w"> </span><span class="n">$_</span><span class="p">.</span><span class="n">GetParameters</span><span class="p">().</span><span class="n">Count</span><span class="w"> </span><span class="o">-</span><span class="n">eq</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="n">and</span><span class="w"> </span><span class="n">$_</span><span class="p">.</span><span class="n">GetParameters</span><span class="p">()[</span><span class="mi">0</span><span class="p">].</span><span class="n">ParameterType</span><span class="p">.</span><span class="n">Name</span><span class="w"> </span><span class="o">-</span><span class="n">eq</span><span class="w"> </span><span class="err">&#39;</span><span class="n">IAsyncOperation</span><span class="err">`</span><span class="mi">1</span><span class="err">&#39;</span><span class="w"> </span><span class="p">})[</span><span class="mi">0</span><span class="p">]</span><span class="w"></span>
+<span class="n">Function</span><span class="w"> </span><span class="n">Await</span><span class="p">(</span><span class="n">$WinRtTask</span><span class="p">,</span><span class="w"> </span><span class="n">$ResultType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">$asTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$asTaskGeneric</span><span class="p">.</span><span class="n">MakeGenericMethod</span><span class="p">(</span><span class="n">$ResultType</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">$netTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$asTask</span><span class="p">.</span><span class="n">Invoke</span><span class="p">(</span><span class="n">$null</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="p">(</span><span class="n">$WinRtTask</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="n">$netTask</span><span class="p">.</span><span class="n">Wait</span><span class="p">(</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Out</span><span class="o">-</span><span class="n">Null</span><span class="w"></span>
+<span class="w">    </span><span class="n">$netTask</span><span class="p">.</span><span class="n">Result</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">Function</span><span class="w"> </span><span class="n">AwaitAction</span><span class="p">(</span><span class="n">$WinRtAction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">$asTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">([</span><span class="n">System</span><span class="p">.</span><span class="n">WindowsRuntimeSystemExtensions</span><span class="p">].</span><span class="n">GetMethods</span><span class="p">()</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">$_</span><span class="p">.</span><span class="n">Name</span><span class="w"> </span><span class="o">-</span><span class="n">eq</span><span class="w"> </span><span class="err">&#39;</span><span class="n">AsTask</span><span class="err">&#39;</span><span class="w"> </span><span class="o">-</span><span class="n">and</span><span class="w"> </span><span class="n">$_</span><span class="p">.</span><span class="n">GetParameters</span><span class="p">().</span><span class="n">Count</span><span class="w"> </span><span class="o">-</span><span class="n">eq</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="n">and</span><span class="w"> </span><span class="o">!</span><span class="n">$_</span><span class="p">.</span><span class="n">IsGenericMethod</span><span class="w"> </span><span class="p">})[</span><span class="mi">0</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="n">$netTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$asTask</span><span class="p">.</span><span class="n">Invoke</span><span class="p">(</span><span class="n">$null</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="p">(</span><span class="n">$WinRtAction</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="n">$netTask</span><span class="p">.</span><span class="n">Wait</span><span class="p">(</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Out</span><span class="o">-</span><span class="n">Null</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">$connectionProfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Windows</span><span class="p">.</span><span class="n">Networking</span><span class="p">.</span><span class="n">Connectivity</span><span class="p">.</span><span class="n">NetworkInformation</span><span class="p">,</span><span class="n">Windows</span><span class="p">.</span><span class="n">Networking</span><span class="p">.</span><span class="n">Connectivity</span><span class="p">,</span><span class="n">ContentType</span><span class="o">=</span><span class="n">WindowsRuntime</span><span class="p">]</span><span class="o">::</span><span class="n">GetInternetConnectionProfile</span><span class="p">()</span><span class="w"></span>
+<span class="n">$tetheringManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Windows</span><span class="p">.</span><span class="n">Networking</span><span class="p">.</span><span class="n">NetworkOperators</span><span class="p">.</span><span class="n">NetworkOperatorTetheringManager</span><span class="p">,</span><span class="n">Windows</span><span class="p">.</span><span class="n">Networking</span><span class="p">.</span><span class="n">NetworkOperators</span><span class="p">,</span><span class="n">ContentType</span><span class="o">=</span><span class="n">WindowsRuntime</span><span class="p">]</span><span class="o">::</span><span class="n">CreateFromConnectionProfile</span><span class="p">(</span><span class="n">$connectionProfile</span><span class="p">)</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">$tetheringManager</span><span class="p">.</span><span class="n">TetheringOperationalState</span><span class="w"> </span><span class="o">-</span><span class="n">eq</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;Hotspot is already On!&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">else</span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;Hotspot is off! Turning it on&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Await</span><span class="w"> </span><span class="p">(</span><span class="n">$tetheringManager</span><span class="p">.</span><span class="n">StartTetheringAsync</span><span class="p">())</span><span class="w"> </span><span class="p">([</span><span class="n">Windows</span><span class="p">.</span><span class="n">Networking</span><span class="p">.</span><span class="n">NetworkOperators</span><span class="p">.</span><span class="n">NetworkOperatorTetheringOperationResult</span><span class="p">])</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<h1>调整Powershell执行策略以允许外部脚本运行</h1>
+<div class="highlight"><pre><span></span><span class="n">set</span><span class="o">-</span><span class="n">executionpolicy</span><span class="w"> </span><span class="n">remotesigned</span><span class="w"></span>
+</pre></div>
+<h1>迁移启动项至CMD以配置自动运行</h1>
+<div class="highlight"><pre><span></span><span class="n">pushd</span><span class="w"> </span><span class="o">%~</span><span class="n">dp0</span><span class="w"></span>
+<span class="n">powershell</span><span class="p">.</span><span class="n">exe</span><span class="w"> </span><span class="o">-</span><span class="n">command</span><span class="w"> </span><span class="o">^</span><span class="w"></span>
+<span class="s">&quot;&amp; {set-executionpolicy Remotesigned -Scope Process; .&#39;.\wifi.ps1&#39; }&quot;</span><span class="w"></span>
+<span class="n">popd</span><span class="w"></span>
+<span class="n">pause</span><span class="w"></span>
+</pre></div>
+<h1>或使用Powershell内置转换工具直接迁移至CMD</h1>
+<div class="highlight"><pre><span></span><span class="err">@</span><span class="n">echo</span><span class="w"> </span><span class="n">off</span><span class="w"></span>
+<span class="n">powershell</span><span class="p">.</span><span class="n">exe</span><span class="w"> </span><span class="o">-</span><span class="n">encodedCommand</span><span class="w"> </span><span class="n">WwBXAGkAbgBkAG8AdwBzAC4AUwB5AHMAdABlAG0ALgBVAHMAZQByAFAAcgBvAGYAaQBsAGUALgBMAG8AYwBrAFMAYwByAGUAZQBuACwAVwBpAG4AZABvAHcAcwAuAFMAeQBzAHQAZQBtAC4AVQBzAGUAcgBQAHIAbwBmAGkAbABlACwAQwBvAG4AdABlAG4AdABUAHkAcABlAD0AVwBpAG4AZABvAHcAcwBSAHUAbgB0AGkAbQBlAF0AIAB8ACAATwB1AHQALQBOAHUAbABsAA0ACgBBAGQAZAAtAFQAeQBwAGUAIAAtAEEAcwBzAGUAbQBiAGwAeQBOAGEAbQBlACAAUwB5AHMAdABlAG0ALgBSAHUAbgB0AGkAbQBlAC4AVwBpAG4AZABvAHcAcwBSAHUAbgB0AGkAbQBlAA0ACgAkAGEAcwBUAGEAcwBrAEcAZQBuAGUAcgBpAGMAIAA9ACAAKABbAFMAeQBzAHQAZQBtAC4AVwBpAG4AZABvAHcAcwBSAHUAbgB0AGkAbQBlAFMAeQBzAHQAZQBtAEUAeAB0AGUAbgBzAGkAbwBuAHMAXQAuAEcAZQB0AE0AZQB0AGgAbwBkAHMAKAApACAAfAAgAD8AIAB7ACAAJABfAC4ATgBhAG0AZQAgAC0AZQBxACAAJwBBAHMAVABhAHMAawAnACAALQBhAG4AZAAgACQAXwAuAEcAZQB0AFAAYQByAGEAbQBlAHQAZQByAHMAKAApAC4AQwBvAHUAbgB0ACAALQBlAHEAIAAxACAALQBhAG4AZAAgACQAXwAuAEcAZQB0AFAAYQByAGEAbQBlAHQAZQByAHMAKAApAFsAMABdAC4AUABhAHIAYQBtAGUAdABlAHIAVAB5AHAAZQAuAE4AYQBtAGUAIAAtAGUAcQAgACcASQBBAHMAeQBuAGMATwBwAGUAcgBhAHQAaQBvAG4AYAAxACcAIAB9ACkAWwAwAF0ADQAKAEYAdQBuAGMAdABpAG8AbgAgAEEAdwBhAGkAdAAoACQAVwBpAG4AUgB0AFQAYQBzAGsALAAgACQAUgBlAHMAdQBsAHQAVAB5AHAAZQApACAAewANAAoAIAAgACAAIAAkAGEAcwBUAGEAcwBrACAAPQAgACQAYQBzAFQAYQBzAGsARwBlAG4AZQByAGkAYwAuAE0AYQBrAGUARwBlAG4AZQByAGkAYwBNAGUAdABoAG8AZAAoACQAUgBlAHMAdQBsAHQAVAB5AHAAZQApAA0ACgAgACAAIAAgACQAbgBlAHQAVABhAHMAawAgAD0AIAAkAGEAcwBUAGEAcwBrAC4ASQBuAHYAbwBrAGUAKAAkAG4AdQBsAGwALAAgAEAAKAAkAFcAaQBuAFIAdABUAGEAcwBrACkAKQANAAoAIAAgACAAIAAkAG4AZQB0AFQAYQBzAGsALgBXAGEAaQB0ACgALQAxACkAIAB8ACAATwB1AHQALQBOAHUAbABsAA0ACgAgACAAIAAgACQAbgBlAHQAVABhAHMAawAuAFIAZQBzAHUAbAB0AA0ACgB9AA0ACgBGAHUAbgBjAHQAaQBvAG4AIABBAHcAYQBpAHQAQQBjAHQAaQBvAG4AKAAkAFcAaQBuAFIAdABBAGMAdABpAG8AbgApACAAewANAAoAIAAgACAAIAAkAGEAcwBUAGEAcwBrACAAPQAgACgAWwBTAHkAcwB0AGUAbQAuAFcAaQBuAGQAbwB3AHMAUgB1AG4AdABpAG0AZQBTAHkAcwB0AGUAbQBFAHgAdABlAG4AcwBpAG8AbgBzAF0ALgBHAGUAdABNAGUAdABoAG8AZABzACgAKQAgAHwAIAA</span><span class="o">/</span><span class="n">ACAAewAgACQAXwAuAE4AYQBtAGUAIAAtAGUAcQAgACcAQQBzAFQAYQBzAGsAJwAgAC0AYQBuAGQAIAAkAF8ALgBHAGUAdABQAGEAcgBhAG0AZQB0AGUAcgBzACgAKQAuAEMAbwB1AG4AdAAgAC0AZQBxACAAMQAgAC0AYQBuAGQAIAAhACQAXwAuAEkAcwBHAGUAbgBlAHIAaQBjAE0AZQB0AGgAbwBkACAAfQApAFsAMABdAA0ACgAgACAAIAAgACQAbgBlAHQAVABhAHMAawAgAD0AIAAkAGEAcwBUAGEAcwBrAC4ASQBuAHYAbwBrAGUAKAAkAG4AdQBsAGwALAAgAEAAKAAkAFcAaQBuAFIAdABBAGMAdABpAG8AbgApACkADQAKACAAIAAgACAAJABuAGUAdABUAGEAcwBrAC4AVwBhAGkAdAAoAC0AMQApACAAfAAgAE8AdQB0AC0ATgB1AGwAbAANAAoAfQANAAoADQAKACQAYwBvAG4AbgBlAGMAdABpAG8AbgBQAHIAbwBmAGkAbABlACAAPQAgAFsAVwBpAG4AZABvAHcAcwAuAE4AZQB0AHcAbwByAGsAaQBuAGcALgBDAG8AbgBuAGUAYwB0AGkAdgBpAHQAeQAuAE4AZQB0AHcAbwByAGsASQBuAGYAbwByAG0AYQB0AGkAbwBuACwAVwBpAG4AZABvAHcAcwAuAE4AZQB0AHcAbwByAGsAaQBuAGcALgBDAG8AbgBuAGUAYwB0AGkAdgBpAHQAeQAsAEMAbwBuAHQAZQBuAHQAVAB5AHAAZQA9AFcAaQBuAGQAbwB3AHMAUgB1AG4AdABpAG0AZQBdADoAOgBHAGUAdABJAG4AdABlAHIAbgBlAHQAQwBvAG4AbgBlAGMAdABpAG8AbgBQAHIAbwBmAGkAbABlACgAKQANAAoAJAB0AGUAdABoAGUAcgBpAG4AZwBNAGEAbgBhAGcAZQByACAAPQAgAFsAVwBpAG4AZABvAHcAcwAuAE4AZQB0AHcAbwByAGsAaQBuAGcALgBOAGUAdAB3AG8AcgBrAE8AcABlAHIAYQB0AG8AcgBzAC4ATgBlAHQAdwBvAHIAawBPAHAAZQByAGEAdABvAHIAVABlAHQAaABlAHIAaQBuAGcATQBhAG4AYQBnAGUAcgAsAFcAaQBuAGQAbwB3AHMALgBOAGUAdAB3AG8AcgBrAGkAbgBnAC4ATgBlAHQAdwBvAHIAawBPAHAAZQByAGEAdABvAHIAcwAsAEMAbwBuAHQAZQBuAHQAVAB5AHAAZQA9AFcAaQBuAGQAbwB3AHMAUgB1AG4AdABpAG0AZQBdADoAOgBDAHIAZQBhAHQAZQBGAHIAbwBtAEMAbwBuAG4AZQBjAHQAaQBvAG4AUAByAG8AZgBpAGwAZQAoACQAYwBvAG4AbgBlAGMAdABpAG8AbgBQAHIAbwBmAGkAbABlACkADQAKAA0ACgAjACAAQgBlACAAcwB1AHIAZQAgAHQAbwAgAGkAbgBjAGwAdQBkAGUAIABCAGUAbgAgAE4ALgAnAHMAIABhAHcAYQBpAHQAIABmAG8AcgAgAEkAQQBzAHkAbgBjAE8AcABlAHIAYQB0AGkAbwBuADoADQAKACMAIABoAHQAdABwAHMAOgAvAC8AcwB1AHAAZQByAHUAcwBlAHIALgBjAG8AbQAvAHEAdQBlAHMAdABpAG8AbgBzAC8AMQAzADQAMQA5ADkANwAvAHUAcwBpAG4AZwAtAGEALQB1AHcAcAAtAGEAcABpAC0AbgBhAG0AZQBzAHAAYQBjAGUALQBpAG4ALQBwAG8AdwBlAHIAcwBoAGUAbABsAA0ACgANAAoAIwAgAEMAaABlAGMAawAgAHcAaABlAHQAaABlAHIAIABNAG8AYgBpAGwAZQAgAEgAbwB0AHMAcABvAHQAIABpAHMAIABlAG4AYQBiAGwAZQBkAA0ACgAkAHQAZQB0AGgAZQByAGkAbgBnAE0AYQBuAGEAZwBlAHIALgBUAGUAdABoAGUAcgBpAG4AZwBPAHAAZQByAGEAdABpAG8AbgBhAGwAUwB0AGEAdABlAA0ACgANAAoAIwAgAEkAZgAgAE0AbwBiAGkAbABlACAASABvAHQAcwBwAG8AdAAgAGkAcwAgAG8AbgAgAC0AIAB0AHUAcgBuACAAaQB0ACAAbwBmAGYALgANAAoAaQBmACAAKAAkAHQAZQB0AGgAZQByAGkAbgBnAE0AYQBuAGEAZwBlAHIALgBUAGUAdABoAGUAcgBpAG4AZwBPAHAAZQByAGEAdABpAG8AbgBhAGwAUwB0AGEAdABlACAALQBlAHEAIAAxACkAewANAAoAIAAgACAAIAAjACAAUwB0AG8AcAAgAE0AbwBiAGkAbABlACAASABvAHQAcwBwAG8AdAANAAoAIAAgACAAIABBAHcAYQBpAHQAIAAoACQAdABlAHQAaABlAHIAaQBuAGcATQBhAG4AYQBnAGUAcgAuAFMAdABvAHAAVABlAHQAaABlAHIAaQBuAGcAQQBzAHkAbgBjACgAKQApACAAKABbAFcAaQBuAGQAbwB3AHMALgBOAGUAdAB3AG8AcgBrAGkAbgBnAC4ATgBlAHQAdwBvAHIAawBPAHAAZQByAGEAdABvAHIAcwAuAE4AZQB0AHcAbwByAGsATwBwAGUAcgBhAHQAbwByAFQAZQB0AGgAZQByAGkAbgBnAE8AcABlAHIAYQB0AGkAbwBuAFIAZQBzAHUAbAB0AF0AKQANAAoAfQANAAoAIwAgAEkAZgAgAE0AbwBiAGkAbABlACAASABvAHQAcwBwAG8AdAAgAGkAcwAgAG8AZgBmACAALQAgAHQAdQByAG4AIABpAHQAIABvAG4ALgANAAoAZQBsAHMAZQB7AA0ACgAgACAAIAAgACMAIABTAHQAYQByAHQAIABNAG8AYgBpAGwAZQAgAEgAbwB0AHMA</span><span class="w"></span>
+</pre></div>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/Powershell/">#Powershell</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/Windows/">#Windows</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/Tech/">#Tech</a>
+    </span>
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <h3>没有了</h3>
+        <p class="yue">这是最新的文章</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/archives/blog/">Hello World!</a>
+        <p class="yue">这是一篇示例文章，在这里你可以看到常用页面元素的显示效果。</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand">桉陌的小站</span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2022 XueRunze</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="Twitter" href="https://twitter.com/x32400" target="_blank"><i class=""></i>Twitter</a></li><span class="separator">·</span><li><a class="no-style" title="Telegram" href="https://t.me/X32400" target="_blank"><i class=""></i>Telegram</a></li><span class="separator">·</span><li><a class="no-style" title="Coolapk" href="http://www.coolapk.com/u/1111669" target="_blank"><i class=""></i>Coolapk</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2020-01-01T00:00+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/Xrz324/Xrz324.github.io@master/assets/galileo-7c8cea54ab.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/Xrz324/Xrz324.github.io@master/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/Xrz324/Xrz324.github.io@master/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/Xrz324/Xrz324.github.io@master/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Xrz324/Xrz324.github.io@master/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+    </body>
+</html>
