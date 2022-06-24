@@ -12,18 +12,18 @@ enable_jsdelivr = {
 
     "enabled": True,
 
-    "repo": "Xrz324/Xrz324.github.io@master"
+    "repo": "Xrz324/xrz324.github.io@master"
 
 }
 
 # 站点设置
-site_name = "迎风沐雨"
+site_name = "桉陌的小站"
 site_build_date = "2020-01-01T00:00+08:00"
 author = "XueRunze"
 email = "Xrz324@outlook.com"
 author_homepage = "https://Xrz324.github.io"
-description = "一如少年模样,风雨不挡"
-key_words = ['迎风沐雨', '博客', 'Blog']
+description = "承蒙时光不弃，与成长不期而遇"
+key_words = ['桉陌', '博客', 'Blog']
 language = 'zh-CN'
 nav = [
     {
