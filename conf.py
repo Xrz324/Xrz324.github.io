@@ -12,7 +12,7 @@ enable_jsdelivr = {
 
     "enabled": True,
 
-    "repo": "Xrz324/xrz324.github.io@master"
+    "repo": "Xrz324/Xrz324.github.io@master"
 
 }
 
