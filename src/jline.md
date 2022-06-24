@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Java四种线程池的使用
-slug: blog
+slug: jline
 date: 2020-09-06 22:00
 status: publish
 author: Xuerunze
