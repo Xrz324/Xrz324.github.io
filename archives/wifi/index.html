@@ -19,22 +19,22 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/Xrz324/Xrz324.github.io@master/6eb915811cf606547996c7dba755d98e.json"
+            api: "https://cdn.jsdelivr.net/gh/Xrz324/Xrz324.github.io@master/b037777f8e4b04697927450e5b4aed8f.json"
         }
     </script>
     
-<title>Windows下开机启用WiFi热点 - 桉陌的小站</title>
+<title>给班里传文件用... - 桉陌的小站</title>
 <meta name="author" content="Xuerunze" />
-<meta name="description" content="这是一个实例，以在Win11上利用Powershell自动开启WiFi热点" />
-<meta property="og:title" content="Windows下开机启用WiFi热点 - 桉陌的小站" />
-<meta property="og:description" content="这是一个实例，以在Win11上利用Powershell自动开启WiFi热点" />
+<meta name="description" content="U盘不方便带，故用博客传文件🤣" />
+<meta property="og:title" content="给班里传文件用... - 桉陌的小站" />
+<meta property="og:description" content="U盘不方便带，故用博客传文件🤣" />
 <meta property="og:site_name" content="桉陌的小站" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/archives/wifi/" />
 <meta property="og:image" content="" />
 <meta property="article:published_time" content="2022-06-24T23:00:00-00.00" />
-<meta name="twitter:title" content="Windows下开机启用WiFi热点 - 桉陌的小站" />
-<meta name="twitter:description" content="这是一个实例，以在Win11上利用Powershell自动开启WiFi热点" />
+<meta name="twitter:title" content="给班里传文件用... - 桉陌的小站" />
+<meta name="twitter:description" content="U盘不方便带，故用博客传文件🤣" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:image" content="" />
 
@@ -66,7 +66,7 @@
 <main>    
     <section class="ga-section ga-content">
         <article class="yue">
-            <h1 class="ga-post_title">Windows下开机启用WiFi热点</h1>
+            <h1 class="ga-post_title">给班里传文件用...</h1>
             <span class="ga-post_meta ga-mono">
                 <span>Xuerunze</span>
                 <time>
@@ -80,44 +80,9 @@
                 
             </span>
             <div class="ga-content_body">
-                <h1>Powershell新建脚本</h1>
-<div class="highlight"><pre><span></span><span class="n">Add</span><span class="o">-</span><span class="n">Type</span><span class="w"> </span><span class="o">-</span><span class="n">AssemblyName</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="n">Runtime</span><span class="p">.</span><span class="n">WindowsRuntime</span><span class="w"></span>
-<span class="n">$asTaskGeneric</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">([</span><span class="n">System</span><span class="p">.</span><span class="n">WindowsRuntimeSystemExtensions</span><span class="p">].</span><span class="n">GetMethods</span><span class="p">()</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">$_</span><span class="p">.</span><span class="n">Name</span><span class="w"> </span><span class="o">-</span><span class="n">eq</span><span class="w"> </span><span class="err">&#39;</span><span class="n">AsTask</span><span class="err">&#39;</span><span class="w"> </span><span class="o">-</span><span class="n">and</span><span class="w"> </span><span class="n">$_</span><span class="p">.</span><span class="n">GetParameters</span><span class="p">().</span><span class="n">Count</span><span class="w"> </span><span class="o">-</span><span class="n">eq</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="n">and</span><span class="w"> </span><span class="n">$_</span><span class="p">.</span><span class="n">GetParameters</span><span class="p">()[</span><span class="mi">0</span><span class="p">].</span><span class="n">ParameterType</span><span class="p">.</span><span class="n">Name</span><span class="w"> </span><span class="o">-</span><span class="n">eq</span><span class="w"> </span><span class="err">&#39;</span><span class="n">IAsyncOperation</span><span class="err">`</span><span class="mi">1</span><span class="err">&#39;</span><span class="w"> </span><span class="p">})[</span><span class="mi">0</span><span class="p">]</span><span class="w"></span>
-<span class="n">Function</span><span class="w"> </span><span class="n">Await</span><span class="p">(</span><span class="n">$WinRtTask</span><span class="p">,</span><span class="w"> </span><span class="n">$ResultType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">$asTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$asTaskGeneric</span><span class="p">.</span><span class="n">MakeGenericMethod</span><span class="p">(</span><span class="n">$ResultType</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">$netTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$asTask</span><span class="p">.</span><span class="n">Invoke</span><span class="p">(</span><span class="n">$null</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="p">(</span><span class="n">$WinRtTask</span><span class="p">))</span><span class="w"></span>
-<span class="w">    </span><span class="n">$netTask</span><span class="p">.</span><span class="n">Wait</span><span class="p">(</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Out</span><span class="o">-</span><span class="n">Null</span><span class="w"></span>
-<span class="w">    </span><span class="n">$netTask</span><span class="p">.</span><span class="n">Result</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="n">Function</span><span class="w"> </span><span class="n">AwaitAction</span><span class="p">(</span><span class="n">$WinRtAction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">$asTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">([</span><span class="n">System</span><span class="p">.</span><span class="n">WindowsRuntimeSystemExtensions</span><span class="p">].</span><span class="n">GetMethods</span><span class="p">()</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">$_</span><span class="p">.</span><span class="n">Name</span><span class="w"> </span><span class="o">-</span><span class="n">eq</span><span class="w"> </span><span class="err">&#39;</span><span class="n">AsTask</span><span class="err">&#39;</span><span class="w"> </span><span class="o">-</span><span class="n">and</span><span class="w"> </span><span class="n">$_</span><span class="p">.</span><span class="n">GetParameters</span><span class="p">().</span><span class="n">Count</span><span class="w"> </span><span class="o">-</span><span class="n">eq</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="n">and</span><span class="w"> </span><span class="o">!</span><span class="n">$_</span><span class="p">.</span><span class="n">IsGenericMethod</span><span class="w"> </span><span class="p">})[</span><span class="mi">0</span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="n">$netTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$asTask</span><span class="p">.</span><span class="n">Invoke</span><span class="p">(</span><span class="n">$null</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="p">(</span><span class="n">$WinRtAction</span><span class="p">))</span><span class="w"></span>
-<span class="w">    </span><span class="n">$netTask</span><span class="p">.</span><span class="n">Wait</span><span class="p">(</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Out</span><span class="o">-</span><span class="n">Null</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="n">$connectionProfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Windows</span><span class="p">.</span><span class="n">Networking</span><span class="p">.</span><span class="n">Connectivity</span><span class="p">.</span><span class="n">NetworkInformation</span><span class="p">,</span><span class="n">Windows</span><span class="p">.</span><span class="n">Networking</span><span class="p">.</span><span class="n">Connectivity</span><span class="p">,</span><span class="n">ContentType</span><span class="o">=</span><span class="n">WindowsRuntime</span><span class="p">]</span><span class="o">::</span><span class="n">GetInternetConnectionProfile</span><span class="p">()</span><span class="w"></span>
-<span class="n">$tetheringManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Windows</span><span class="p">.</span><span class="n">Networking</span><span class="p">.</span><span class="n">NetworkOperators</span><span class="p">.</span><span class="n">NetworkOperatorTetheringManager</span><span class="p">,</span><span class="n">Windows</span><span class="p">.</span><span class="n">Networking</span><span class="p">.</span><span class="n">NetworkOperators</span><span class="p">,</span><span class="n">ContentType</span><span class="o">=</span><span class="n">WindowsRuntime</span><span class="p">]</span><span class="o">::</span><span class="n">CreateFromConnectionProfile</span><span class="p">(</span><span class="n">$connectionProfile</span><span class="p">)</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">$tetheringManager</span><span class="p">.</span><span class="n">TetheringOperationalState</span><span class="w"> </span><span class="o">-</span><span class="n">eq</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="s">&quot;Hotspot is already On!&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="k">else</span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="s">&quot;Hotspot is off! Turning it on&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="n">Await</span><span class="w"> </span><span class="p">(</span><span class="n">$tetheringManager</span><span class="p">.</span><span class="n">StartTetheringAsync</span><span class="p">())</span><span class="w"> </span><span class="p">([</span><span class="n">Windows</span><span class="p">.</span><span class="n">Networking</span><span class="p">.</span><span class="n">NetworkOperators</span><span class="p">.</span><span class="n">NetworkOperatorTetheringOperationResult</span><span class="p">])</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-<h1>调整Powershell执行策略以允许外部脚本运行</h1>
-<div class="highlight"><pre><span></span><span class="n">set</span><span class="o">-</span><span class="n">executionpolicy</span><span class="w"> </span><span class="n">remotesigned</span><span class="w"></span>
-</pre></div>
-<h1>迁移启动项至CMD以配置自动运行</h1>
-<div class="highlight"><pre><span></span><span class="n">pushd</span><span class="w"> </span><span class="o">%~</span><span class="n">dp0</span><span class="w"></span>
-<span class="n">powershell</span><span class="p">.</span><span class="n">exe</span><span class="w"> </span><span class="o">-</span><span class="n">command</span><span class="w"> </span><span class="o">^</span><span class="w"></span>
-<span class="s">&quot;&amp; {set-executionpolicy Remotesigned -Scope Process; .&#39;.\wifi.ps1&#39; }&quot;</span><span class="w"></span>
-<span class="n">popd</span><span class="w"></span>
-<span class="n">pause</span><span class="w"></span>
-</pre></div>
-<h1>Kaspersky部署</h1>
-<h2><a href="https://t.wss.ink/f/8p2m9iru3hp">https://t.wss.ink/f/8p2m9iru3hp</a></h2>
+                <h1>动态壁纸</h1>
+<h2><a href="https://t.wss.ink/f/8plrci3tmff">https://t.wss.ink/f/8plrci3tmff</a></h2>
+<h3><a href="https://louie.co.nz/25th_hour/">https://louie.co.nz/25th_hour/</a></h3>
 
             </div>
         </article>
