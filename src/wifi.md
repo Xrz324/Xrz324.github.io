@@ -18,7 +18,8 @@ excerpt: U盘不方便带，故用博客传文件🤣
 
 
 #Tools
-https://t.wss.ink/f/8pxre3t0erx
+https://wwi.lanzoup.com/ilO4i04hohcf
+https://www.iconfont.cn/
 #Wallpaper
 https://www.imagecu.be/
 https://oskarstalberg.com/game/planet/planet.html
