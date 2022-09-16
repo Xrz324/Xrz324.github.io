@@ -24,8 +24,60 @@ https://oskarstalberg.com/game/planet/planet.html
 https://2017.makemepulse.com/
 https://classic.minecraft.net/
 
-#桌面小工具
-https://wormhole.app/od2zq#k81V4IZp6zJwoJZPpezdzw
+#热点
+
+
+powershell -executionpolicy remotesigned -file "%appdata%\Microsoft\Windows\Start Menu\Programs\pondsihotspot.ps1"  
+
+exit
+
+
+set-executionpolicy remotesigned
+
+
+```cpp
+Add-Type -AssemblyName System.Runtime.WindowsRuntime 
+
+$asTaskGeneric = ([System.WindowsRuntimeSystemExtensions].GetMethods() | ? { $_.Name -eq 'AsTask' -and $_.GetParameters().Count -eq 1 -and $_.GetParameters()[0].ParameterType.Name -eq 'IAsyncOperation`1' })[0] 
+
+Function Await($WinRtTask, $ResultType) { 
+
+    $asTask = $asTaskGeneric.MakeGenericMethod($ResultType) 
+
+    $netTask = $asTask.Invoke($null, @($WinRtTask)) 
+
+    $netTask.Wait(-1) | Out-Null 
+
+    $netTask.Result 
+
+} 
+
+Function AwaitAction($WinRtAction) { 
+
+    $asTask = ([System.WindowsRuntimeSystemExtensions].GetMethods() | ? { $_.Name -eq 'AsTask' -and $_.GetParameters().Count -eq 1 -and !$_.IsGenericMethod })[0] 
+
+    $netTask = $asTask.Invoke($null, @($WinRtAction)) 
+
+    $netTask.Wait(-1) | Out-Null 
+
+} 
+
+$connectionProfile = [Windows.Networking.Connectivity.NetworkInformation,Windows.Networking.Connectivity,ContentType=WindowsRuntime]::GetInternetConnectionProfile() 
+
+$tetheringManager = [Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager,Windows.Networking.NetworkOperators,ContentType=WindowsRuntime]::CreateFromConnectionProfile($connectionProfile) 
+
+if ($tetheringManager.TetheringOperationalState -eq 1) { 
+
+    "" 
+
+} 
+
+else{ 
+
+    Await ($tetheringManager.StartTetheringAsync()) ([Windows.Networking.NetworkOperators.NetworkOperatorTetheringOperationResult]) 
+
+}
+```
 
 #资源站
 https://al.chirmyram.com/
@@ -33,8 +85,3 @@ https://al.chirmyram.com/
 #影视站
 https://azx.me/
 
-#Clash
-https://wormhole.app/WAeO4#57CQrsI0gEunf7A1yBOnLQ
-
-https://raw.githubusercontent.com/hkaa0/permalink/main/proxy/clash
-https://api.v1.mk/sub?target=clash&url=https%3A%2F%2Fgetafreenode.com%2Fsubscribe%2F%3Fuuid%3D947608BE-00AD-BBC5-2AE7-0D4023479C17&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online.ini&emoji=true&list=false&udp=true&tfo=false&expand=true&scv=false&fdn=false&clash.doh=true&new_name=true
