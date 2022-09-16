@@ -27,10 +27,9 @@ https://classic.minecraft.net/
 #热点
 
 
-powershell -executionpolicy remotesigned -file "%appdata%\Microsoft\Windows\Start Menu\Programs\pondsihotspot.ps1"  
+powershell -executionpolicy remotesigned -file
 
 exit
-
 
 set-executionpolicy remotesigned
 
