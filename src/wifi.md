@@ -37,23 +37,23 @@ https://api.v1.mk/sub?target=clash&url=https%3A%2F%2Fpre.paimon.gq%2Fclash.yaml&
 
 #Manjaro配置
 ##懒得现打，提前弄好😶
-##配置镜像 `sudo pacman-mirrors -i -c China -m rank`
-##配置ArchlinuxCN源 `sudo gedit /etc/pacman.conf`
+配置镜像 `sudo pacman-mirrors -i -c China -m rank`
+配置ArchlinuxCN源 `sudo gedit /etc/pacman.conf`
 ```
 [archlinuxcn]
 SigLevel = Optional TrustedOnly
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 ```
-##同步秘钥`sudo pacman -S archlinuxcn-keyring`
-##输入法相关`sudo pacman -S fcitx-im` `sudo pacman -S fcitx-configtool` `sudo pacman -S fcitx-sogoupinyin`
-##加载输入法`gedit ~/.xprofile`
+同步秘钥`sudo pacman -S archlinuxcn-keyring`
+输入法相关`sudo pacman -S fcitx-im` `sudo pacman -S fcitx-configtool` `sudo pacman -S fcitx-sogoupinyin`
+加载输入法`gedit ~/.xprofile`
 ```
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
 ```
-##Fix Sougou`yay -S fcitx-qt4`
-##WPS
+Fix Sougou`yay -S fcitx-qt4`
+WPS
 ```
 sudo pacman -S wps-office
 sudo pacman -S ttf-wps-fonts
