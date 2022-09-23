@@ -18,69 +18,45 @@ excerpt: U盘不方便带，故用博客传文件🤣
 #Tools
 https://wwi.lanzoup.com/ilO4i04hohcf
 https://www.iconfont.cn/
-#Wallpaper
+
+#Fun
 https://www.imagecu.be/
 https://oskarstalberg.com/game/planet/planet.html
 https://2017.makemepulse.com/
 https://classic.minecraft.net/
 
-#热点
-
-
-powershell -executionpolicy remotesigned -file
-
-exit
-
-set-executionpolicy remotesigned
-
-
-```cpp
-Add-Type -AssemblyName System.Runtime.WindowsRuntime 
-
-$asTaskGeneric = ([System.WindowsRuntimeSystemExtensions].GetMethods() | ? { $_.Name -eq 'AsTask' -and $_.GetParameters().Count -eq 1 -and $_.GetParameters()[0].ParameterType.Name -eq 'IAsyncOperation`1' })[0] 
-
-Function Await($WinRtTask, $ResultType) { 
-
-    $asTask = $asTaskGeneric.MakeGenericMethod($ResultType) 
-
-    $netTask = $asTask.Invoke($null, @($WinRtTask)) 
-
-    $netTask.Wait(-1) | Out-Null 
-
-    $netTask.Result 
-
-} 
-
-Function AwaitAction($WinRtAction) { 
-
-    $asTask = ([System.WindowsRuntimeSystemExtensions].GetMethods() | ? { $_.Name -eq 'AsTask' -and $_.GetParameters().Count -eq 1 -and !$_.IsGenericMethod })[0] 
-
-    $netTask = $asTask.Invoke($null, @($WinRtAction)) 
-
-    $netTask.Wait(-1) | Out-Null 
-
-} 
-
-$connectionProfile = [Windows.Networking.Connectivity.NetworkInformation,Windows.Networking.Connectivity,ContentType=WindowsRuntime]::GetInternetConnectionProfile() 
-
-$tetheringManager = [Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager,Windows.Networking.NetworkOperators,ContentType=WindowsRuntime]::CreateFromConnectionProfile($connectionProfile) 
-
-if ($tetheringManager.TetheringOperationalState -eq 1) { 
-
-    "" 
-
-} 
-
-else{ 
-
-    Await ($tetheringManager.StartTetheringAsync()) ([Windows.Networking.NetworkOperators.NetworkOperatorTetheringOperationResult]) 
-
-}
-```
-
 #资源站
 https://al.chirmyram.com/
+https://zf.chirmyram.com/
 
 #影视站
 https://azx.me/
 
+#Clash
+https://api.v1.mk/sub?target=clash&url=https%3A%2F%2Fpre.paimon.gq%2Fclash.yaml&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online_Full_MultiMode.ini&emoji=true&list=false&udp=false&tfo=false&expand=true&scv=true&fdn=false&new_name=true
+
+#Manjaro配置
+##懒得现打，提前弄好😶
+##配置镜像 `sudo pacman-mirrors -i -c China -m rank`
+##配置ArchlinuxCN源 `sudo gedit /etc/pacman.conf`
+```
+[archlinuxcn]
+SigLevel = Optional TrustedOnly
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+```
+##同步秘钥`sudo pacman -S archlinuxcn-keyring`
+##输入法相关`sudo pacman -S fcitx-im` `sudo pacman -S fcitx-configtool` `sudo pacman -S fcitx-sogoupinyin`
+##加载输入法`gedit ~/.xprofile`
+```
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+```
+##Fix Sougou`yay -S fcitx-qt4`
+##WPS
+```
+sudo pacman -S wps-office
+sudo pacman -S ttf-wps-fonts
+yay -Ss wps | grep zh
+yay -S archlinuxcn/wps-office-mui-zh-cn
+```
