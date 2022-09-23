@@ -97,21 +97,21 @@
 <p><a href="https://api.v1.mk/sub?target=clash&amp;url=https%3A%2F%2Fpre.paimon.gq%2Fclash.yaml&amp;insert=false&amp;config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online_Full_MultiMode.ini&amp;emoji=true&amp;list=false&amp;udp=false&amp;tfo=false&amp;expand=true&amp;scv=true&amp;fdn=false&amp;new_name=true">https://api.v1.mk/sub?target=clash&amp;url=https%3A%2F%2Fpre.paimon.gq%2Fclash.yaml&amp;insert=false&amp;config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online_Full_MultiMode.ini&amp;emoji=true&amp;list=false&amp;udp=false&amp;tfo=false&amp;expand=true&amp;scv=true&amp;fdn=false&amp;new_name=true</a></p>
 <h1>Manjaro配置</h1>
 <h2>懒得现打，提前弄好😶</h2>
-<h2>配置镜像 <code>sudo pacman-mirrors -i -c China -m rank</code></h2>
-<h2>配置ArchlinuxCN源 <code>sudo gedit /etc/pacman.conf</code></h2>
+<p>配置镜像 <code>sudo pacman-mirrors -i -c China -m rank</code>
+配置ArchlinuxCN源 <code>sudo gedit /etc/pacman.conf</code></p>
 
 <pre><code>[archlinuxcn]
 SigLevel = Optional TrustedOnly
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch</code></pre>
-<h2>同步秘钥<code>sudo pacman -S archlinuxcn-keyring</code></h2>
-<h2>输入法相关<code>sudo pacman -S fcitx-im</code> <code>sudo pacman -S fcitx-configtool</code> <code>sudo pacman -S fcitx-sogoupinyin</code></h2>
-<h2>加载输入法<code>gedit ~/.xprofile</code></h2>
+<p>同步秘钥<code>sudo pacman -S archlinuxcn-keyring</code>
+输入法相关<code>sudo pacman -S fcitx-im</code> <code>sudo pacman -S fcitx-configtool</code> <code>sudo pacman -S fcitx-sogoupinyin</code>
+加载输入法<code>gedit ~/.xprofile</code></p>
 
 <pre><code>export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"</code></pre>
-<h2>Fix Sougou<code>yay -S fcitx-qt4</code></h2>
-<h2>WPS</h2>
+<p>Fix Sougou<code>yay -S fcitx-qt4</code>
+WPS</p>
 
 <pre><code>sudo pacman -S wps-office
 sudo pacman -S ttf-wps-fonts

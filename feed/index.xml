@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>桉陌的小站</title><link>/</link><description>你所见即我，好与坏我都不反驳</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url></url><title>桉陌的小站</title><link>/</link></image><language>zh-CN</language><lastBuildDate>Fri, 23 Sep 2022 16:50:36 +0806</lastBuildDate><pubDate>Fri, 23 Sep 2022 16:50:36 +0806</pubDate><item><title>Hello World!</title><link>/archives/blog/</link><description>&lt;div class="notice"&gt;这是一篇示例文章，在这里你可以看到常用页面元素的显示效果，同时也是 Markdown 语法的参考文章。&lt;/div&gt;&lt;h2&gt;L2 Heading&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>桉陌的小站</title><link>/</link><description>你所见即我，好与坏我都不反驳</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url></url><title>桉陌的小站</title><link>/</link></image><language>zh-CN</language><lastBuildDate>Fri, 23 Sep 2022 17:09:48 +0806</lastBuildDate><pubDate>Fri, 23 Sep 2022 17:09:48 +0806</pubDate><item><title>Hello World!</title><link>/archives/blog/</link><description>&lt;div class="notice"&gt;这是一篇示例文章，在这里你可以看到常用页面元素的显示效果，同时也是 Markdown 语法的参考文章。&lt;/div&gt;&lt;h2&gt;L2 Heading&lt;/h2&gt;
 &lt;h3&gt;L3 Heading&lt;/h3&gt;
 &lt;h4&gt;L4 Heading&lt;/h4&gt;
 &lt;h5&gt;L5 Heading&lt;/h5&gt;
@@ -217,21 +217,21 @@
 &lt;p&gt;&lt;a href="https://api.v1.mk/sub?target=clash&amp;amp;url=https%3A%2F%2Fpre.paimon.gq%2Fclash.yaml&amp;amp;insert=false&amp;amp;config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online_Full_MultiMode.ini&amp;amp;emoji=true&amp;amp;list=false&amp;amp;udp=false&amp;amp;tfo=false&amp;amp;expand=true&amp;amp;scv=true&amp;amp;fdn=false&amp;amp;new_name=true"&gt;https://api.v1.mk/sub?target=clash&amp;amp;url=https%3A%2F%2Fpre.paimon.gq%2Fclash.yaml&amp;amp;insert=false&amp;amp;config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online_Full_MultiMode.ini&amp;amp;emoji=true&amp;amp;list=false&amp;amp;udp=false&amp;amp;tfo=false&amp;amp;expand=true&amp;amp;scv=true&amp;amp;fdn=false&amp;amp;new_name=true&lt;/a&gt;&lt;/p&gt;
 &lt;h1&gt;Manjaro配置&lt;/h1&gt;
 &lt;h2&gt;懒得现打，提前弄好😶&lt;/h2&gt;
-&lt;h2&gt;配置镜像 &lt;code&gt;sudo pacman-mirrors -i -c China -m rank&lt;/code&gt;&lt;/h2&gt;
-&lt;h2&gt;配置ArchlinuxCN源 &lt;code&gt;sudo gedit /etc/pacman.conf&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;配置镜像 &lt;code&gt;sudo pacman-mirrors -i -c China -m rank&lt;/code&gt;
+配置ArchlinuxCN源 &lt;code&gt;sudo gedit /etc/pacman.conf&lt;/code&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;[archlinuxcn]
 SigLevel = Optional TrustedOnly
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;同步秘钥&lt;code&gt;sudo pacman -S archlinuxcn-keyring&lt;/code&gt;&lt;/h2&gt;
-&lt;h2&gt;输入法相关&lt;code&gt;sudo pacman -S fcitx-im&lt;/code&gt; &lt;code&gt;sudo pacman -S fcitx-configtool&lt;/code&gt; &lt;code&gt;sudo pacman -S fcitx-sogoupinyin&lt;/code&gt;&lt;/h2&gt;
-&lt;h2&gt;加载输入法&lt;code&gt;gedit ~/.xprofile&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;同步秘钥&lt;code&gt;sudo pacman -S archlinuxcn-keyring&lt;/code&gt;
+输入法相关&lt;code&gt;sudo pacman -S fcitx-im&lt;/code&gt; &lt;code&gt;sudo pacman -S fcitx-configtool&lt;/code&gt; &lt;code&gt;sudo pacman -S fcitx-sogoupinyin&lt;/code&gt;
+加载输入法&lt;code&gt;gedit ~/.xprofile&lt;/code&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Fix Sougou&lt;code&gt;yay -S fcitx-qt4&lt;/code&gt;&lt;/h2&gt;
-&lt;h2&gt;WPS&lt;/h2&gt;
+&lt;p&gt;Fix Sougou&lt;code&gt;yay -S fcitx-qt4&lt;/code&gt;
+WPS&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;sudo pacman -S wps-office
 sudo pacman -S ttf-wps-fonts
