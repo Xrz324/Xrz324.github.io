@@ -36,6 +36,9 @@ https://azx.me/
 https://api.v1.mk/sub?target=clash&url=https%3A%2F%2Fpre.paimon.gq%2Fclash.yaml&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online.ini&emoji=true&list=false&udp=false&tfo=false&expand=true&scv=true&fdn=false&new_name=true
 https://api.v1.mk/sub?target=clash&url=https%3A%2F%2Fgetafreenode.com%2Fsubscribe%2F%3Fuuid%3D947608BE-00AD-BBC5-2AE7-0D4023479C17&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online.ini&emoji=true&list=false&udp=true&tfo=false&expand=true&scv=false&fdn=false&new_name=true
 
+#Files
+https://www.mediafire.com/folder/9jltfg044j32p/Shared
+
 #Manjaro配置
 ##懒得现打，提前弄好😶
 配置镜像 `sudo pacman-mirrors -i -c China -m rank`
