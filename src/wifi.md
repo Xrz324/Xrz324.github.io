@@ -1,67 +1,53 @@
 ---
 layout: post
-title: 给班里传文件用...
+title: 资源整理
 slug: wifi
 date: 2022-07-04 22:00
 status: publish
 author: Xuerunze
 categories: 
-  - Tech
+  - Resources
 tags:
-  - Powershell
-  - Windows
-  - Tech
-excerpt: U盘不方便带，故用博客传文件🤣
+  - Resources
+  - Programs
+  - Movies
+excerpt: 资源汇总整理
 ---
 
 
-#Tools
-https://wwi.lanzoup.com/ilO4i04hohcf
-https://www.iconfont.cn/
-https://wormhole.app/L9Qp2#9ZzEJUdYsNw2y7ZQaJXn6g
-
 #Fun
-https://www.imagecu.be/
+https://sj.chirmyram.top
 https://oskarstalberg.com/game/planet/planet.html
 https://2017.makemepulse.com/
 https://classic.minecraft.net/
 
-#资源站
+#Alist
 https://al.chirmyram.com/
 https://zf.chirmyram.com/
 
 #影视站
+https://ddys.site/
+https://www.freeok.vip/
+https://www.fantuanhd.com/
+https://www.btnull.org/
+https://www.bhxoxo.com/
+https://555app.cc/
+https://dsxys.pro/
 https://azx.me/
+http://www.mxdm8.com/
+https://www.czzzu.com/
+https://www.yhpdm.com/
+https://blssv.com/
+https://hua355.vip/
+https://www.ysgcapp.com/
+https://hdmoli.com/
 
-#Clash
-https://api.v1.mk/sub?target=clash&url=https%3A%2F%2Fpre.paimon.gq%2Fclash.yaml&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online.ini&emoji=true&list=false&udp=false&tfo=false&expand=true&scv=true&fdn=false&new_name=true
-https://api.v1.mk/sub?target=clash&url=https%3A%2F%2Fgetafreenode.com%2Fsubscribe%2F%3Fuuid%3D947608BE-00AD-BBC5-2AE7-0D4023479C17&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online.ini&emoji=true&list=false&udp=true&tfo=false&expand=true&scv=false&fdn=false&new_name=true
-
-#Files
-https://www.mediafire.com/folder/9jltfg044j32p/Shared
-
-#Manjaro配置
-##懒得现打，提前弄好😶
-配置镜像 `sudo pacman-mirrors -i -c China -m rank`
-配置ArchlinuxCN源 `sudo gedit /etc/pacman.conf`
-```
-[archlinuxcn]
-SigLevel = Optional TrustedOnly
-Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
-```
-同步秘钥`sudo pacman -S archlinuxcn-keyring`
-输入法相关`sudo pacman -S fcitx-im` `sudo pacman -S fcitx-configtool` `sudo pacman -S fcitx-sogoupinyin`
-加载输入法`gedit ~/.xprofile`
-```
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS="@im=fcitx"
-```
-Fix Sougou`yay -S fcitx-qt4`
-WPS
-```
-sudo pacman -S wps-office
-sudo pacman -S ttf-wps-fonts
-yay -Ss wps | grep zh
-yay -S archlinuxcn/wps-office-mui-zh-cn
-```
+#TvBox
+##Application
+Phone: https://bbs.kafan.cn/thread-2249557-1-1.html
+Tv: https://github.com/pvqogw/TVBoxOSC/releases
+##接口
+https://dxawi.github.io/0/0.json
+http://我不是.肥猫.love:63/接口禁止贩卖
+https://raw.liucn.cc/box/m.json
+多仓版https://raw.liucn.cc/box/dm.txt
