@@ -10,7 +10,7 @@ index_page_size = 10
 archives_page_size = 20
 enable_jsdelivr = {
 
-    "enabled": True,
+    "enabled": False,
 
     "repo": "Xrz324/Xrz324.github.io@master"
 
@@ -45,8 +45,8 @@ nav = [
 
 social_links = [
     {
-        "name": "Twitter",
-        "url": "https://twitter.com/x32400",
+        "name": "QQ",
+        "url": "https://qm.qq.com/cgi-bin/qm/qr?k=HBV3mgs37lzQGSZ-6kwwCeKJaAMUdAhu&noverify=0",
         "icon": ""
     },
     {
